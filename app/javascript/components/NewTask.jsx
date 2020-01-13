@@ -104,14 +104,14 @@ class NewTask extends React.Component {
 						/>
 						
 						<label htmlFor="taskCategory">Category</label>
-						<input 
-							type="text"
-							name="category"
-							id="taskCategory"
-							required
-							className="form-control"
-							onChange={this.onChange}
-						/>
+						
+						<select name="category" className="form-control" value={this.state.value} onChange={this.onChange}>
+							<option value="work">Work</option>
+							<option value="family">Family</option>
+							<option value="study">Study</option>
+							<option value="health">Health</option>
+							<option value="else">Else</option>
+						</select>
 						<button type="submit"  className="btn custom-button mt-3">
 						Create Task
 						</button>

@@ -52,6 +52,10 @@ class Tasks extends React.Component {
 			View Task
 			</Link>
 			&nbsp;
+			<Link to={`/tasks/${task.id}/edit`} className="btn custom-button">
+			Edit Task
+			</Link>
+			&nbsp;
 			<button onClick={() => this.handleDelete(task.id) } className="btn custom-button">
 			Delete Task
 			</button>

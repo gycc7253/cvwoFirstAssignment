@@ -106,10 +106,12 @@ class NewTask extends React.Component {
 						<label htmlFor="taskCategory">Category</label>
 						
 						<select name="category" id="taskCategory"  required className="form-control" onChange={this.onChange}>
+							<option disabled selected value> -- Select a Category -- </option>
 							<option value="work">Work</option>
 							<option value="family">Family</option>
 							<option value="study">Study</option>
 							<option value="health">Health</option>
+							<option value="social">Social</option>
 							<option value="else">Else</option>
 						</select>
 						<button type="submit"  className="btn custom-button mt-3">

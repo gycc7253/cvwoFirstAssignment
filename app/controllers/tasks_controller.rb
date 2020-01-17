@@ -40,7 +40,7 @@ class TasksController < ApplicationController
 
 	def search
 		query = params[:query]
-		task = Task.where(category: query)
+		task = Task.where('category LIKE ?', "%#{query}%")
 		render json: task
 	end
 

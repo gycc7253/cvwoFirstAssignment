@@ -20,8 +20,7 @@ class Tasks extends React.Component {
 			}
 			throw new Error("Gycc Json Response Error");
 		})
-		.then(response => {this.setState({ tasks: response })
-			alert(JSON.stringify(response));}
+		.then(response => {this.setState({ tasks: response })}
 		)
 		.catch(() => this.props.history.push("/"));
 		//.then(response => this.setState({ tasks: response }))
@@ -32,9 +31,14 @@ class Tasks extends React.Component {
 	handleDelete = (taskId) => {
 		fetch(`/tasks/${taskId}`, { method: 'delete' }).
 			then((response) => {
-				alert('Task delete successfully!')
-				window.location.reload();
-			});
+				if(response.ok) {
+					alert("task deleted successfully!")
+					return response.json();
+				}
+				throw new Error("Gycc after delete response error");
+			})
+			.then(response =>{this.setState({ tasks: response })})
+			.catch(() => this.props.history.push("/"));
 	}
 
 	handleSearch() {
@@ -42,7 +46,6 @@ class Tasks extends React.Component {
 		fetch(`/tasks/search?query=${encodeURIComponent(query)}`, { method: 'get' })
 		.then(response => response.json())
 		.then(response => {
-			alert(JSON.stringify(response))
 			this.setState({ tasks: response });})
 		.catch(() => alert("xixixi"));
 	}
@@ -97,9 +100,12 @@ class Tasks extends React.Component {
 					These are your tasks.
 				</p>
 				<select className="form-control" name="tag" ref="query" onChange={this.handleSearch.bind(this)}>
-					<option disable selected value> -- Select a Category -- </option>
+					<option value="">ALL</option>
 					<option value="work">Work</option>
 					<option value="family">Family</option>
+					<option value="study">Study</option>
+					<option value="health">Health</option>
+					<option value="social">Social</option>
 					<option value="else">Else</option>
 				</select>
 			</div>

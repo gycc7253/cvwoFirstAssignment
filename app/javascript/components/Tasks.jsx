@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ReactDOM from "react-dom";
+
 
 class Tasks extends React.Component {
 	constructor(props) {
@@ -18,7 +20,9 @@ class Tasks extends React.Component {
 			}
 			throw new Error("Gycc Json Response Error");
 		})
-		.then(response => this.setState({ tasks: response }))
+		.then(response => {this.setState({ tasks: response })
+			alert(JSON.stringify(response));}
+		)
 		.catch(() => this.props.history.push("/"));
 		//.then(response => this.setState({ tasks: response }))
 		//.catch(() => this.props.history.push("/"));
@@ -31,6 +35,16 @@ class Tasks extends React.Component {
 				alert('Task delete successfully!')
 				window.location.reload();
 			});
+	}
+
+	handleSearch() {
+		const query = ReactDOM.findDOMNode(this.refs.query).value;
+		fetch(`/tasks/search?query=${encodeURIComponent(query)}`, { method: 'get' })
+		.then(response => response.json())
+		.then(response => {
+			alert(JSON.stringify(response))
+			this.setState({ tasks: response });})
+		.catch(() => alert("xixixi"));
 	}
 
 	render() {
@@ -82,6 +96,12 @@ class Tasks extends React.Component {
 				<p className="lead text-muted">
 					These are your tasks.
 				</p>
+				<select className="form-control" name="tag" ref="query" onChange={this.handleSearch.bind(this)}>
+					<option disable selected value> -- Select a Category -- </option>
+					<option value="work">Work</option>
+					<option value="family">Family</option>
+					<option value="else">Else</option>
+				</select>
 			</div>
 			</section>
 

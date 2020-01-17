@@ -38,6 +38,12 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def search
+		query = params[:query]
+		task = Task.where(category: query)
+		render json: task
+	end
+
 	def update
 		task = Task.find(params[:id])
 		task.update(task_params)

@@ -5,7 +5,7 @@ import Tasks from "../components/Tasks";
 import Task from "../components/Task";
 import NewTask from "../components/NewTask";
 import UpdateTask from "../components/UpdateTask";
-
+import SearchForm from "../components/SearchForm";
 export default (
 	  <Router>
 	    <Switch>
@@ -14,6 +14,7 @@ export default (
 		<Route path="/task/:id" exact component={Task} />
 		<Route path="/task" exact component={NewTask} />
 		<Route path="/tasks/:id/edit" exact component={UpdateTask} />
+		<Route path="/tasks/search" exact component={Tasks} />
 		</Switch>
 	  </Router>
 );

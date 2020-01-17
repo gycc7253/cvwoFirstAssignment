@@ -105,7 +105,7 @@ class NewTask extends React.Component {
 						
 						<label htmlFor="taskCategory">Category</label>
 						
-						<select name="category" className="form-control" value={this.state.value} onChange={this.onChange}>
+						<select name="category" id="taskCategory"  required className="form-control" onChange={this.onChange}>
 							<option value="work">Work</option>
 							<option value="family">Family</option>
 							<option value="study">Study</option>

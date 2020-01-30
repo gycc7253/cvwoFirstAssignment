@@ -1,5 +1,4 @@
+The online application can be accessed at: 
 http://gycctodomanager.herokuapp.com/
 
-My css style messed up in the heroku version.
-But functionality are working correctly.
-The original webpage images are in this folder
+
